@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Migration | 介绍</title>
+    <meta name="description" content="Migration 数据迁移工具">
+    
+    
+    <link rel="preload" href="/migration/assets/css/5.styles.665f0b8e.css" as="style"><link rel="preload" href="/migration/assets/js/app.00627eae.js" as="script"><link rel="preload" href="/migration/assets/js/2.7f5a725a.js" as="script"><link rel="prefetch" href="/migration/assets/js/0.33f7c87c.js"><link rel="prefetch" href="/migration/assets/js/1.9eb05909.js"><link rel="prefetch" href="/migration/assets/js/3.18ff4914.js"><link rel="prefetch" href="/migration/assets/js/4.e163da67.js">
+    <link rel="stylesheet" href="/migration/assets/css/5.styles.665f0b8e.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div><a href="/migration/zh/" class="home-link router-link-active"><!----><span class="site-name">
+      Migration
+    </span></a><div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""><!----></div><nav class="nav-links can-hide"><div class="nav-item"><a href="/migration/zh/guide/" class="nav-link router-link-exact-active router-link-active">指南</a></div><!----></nav></div></header><div class="sidebar-mask"></div><div class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/migration/zh/guide/" class="nav-link router-link-exact-active router-link-active">指南</a></div><!----></nav><ul class="sidebar-links"><li><div class="sidebar-group first"><p class="sidebar-heading open"><span>指南</span><!----></p><ul class="sidebar-group-items"><li><a href="/migration/zh/guide/" class="active sidebar-link">介绍</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/migration/zh/guide/#系统构成" class="sidebar-link">系统构成</a></li><li class="sidebar-sub-header"><a href="/migration/zh/guide/#特性" class="sidebar-link">特性</a></li><li class="sidebar-sub-header"><a href="/migration/zh/guide/#todo" class="sidebar-link">Todo</a></li><li class="sidebar-sub-header"><a href="/migration/zh/guide/#contributors" class="sidebar-link">Contributors</a></li></ul></li><li><a href="/migration/zh/guide/getting-started.html" class="sidebar-link">开始使用</a></li><li><a href="/migration/zh/guide/advanced.html" class="sidebar-link">高级选项</a></li></ul></div></li></ul></div><div class="page"><div class="content"><h1 id="介绍"><a href="#介绍" aria-hidden="true" class="header-anchor">#</a> 介绍</h1><h5 id="migration-的需求产生于："><a href="#migration-的需求产生于：" aria-hidden="true" class="header-anchor">#</a> Migration 的需求产生于：</h5><h5 id="大量数据在迁移时的缓慢，特别是使用一些数据库工具的导出和导入"><a href="#大量数据在迁移时的缓慢，特别是使用一些数据库工具的导出和导入" aria-hidden="true" class="header-anchor">#</a> 大量数据在迁移时的缓慢，特别是使用一些数据库工具的导出和导入</h5><h5 id="迁移中间处理往往需要通过编码实现"><a href="#迁移中间处理往往需要通过编码实现" aria-hidden="true" class="header-anchor">#</a> 迁移中间处理往往需要通过编码实现</h5><h5 id="迁移的记录和任务的重复使用"><a href="#迁移的记录和任务的重复使用" aria-hidden="true" class="header-anchor">#</a> 迁移的记录和任务的重复使用</h5><h2 id="系统构成"><a href="#系统构成" aria-hidden="true" class="header-anchor">#</a> 系统构成</h2><p>应用程序由electron 构成，界面由vue编写，迁移程序由java进行处理。</p><h2 id="特性"><a href="#特性" aria-hidden="true" class="header-anchor">#</a> 特性</h2><ul><li>通过界面配置数据库连接</li><li>界面交互选择数据表</li><li>界面交互选择映射字段</li><li>勾选配置项</li><li>多线程支持</li><li>分页查询设置</li><li>中间脚本编写编辑器</li><li>中间脚本测试</li><li>实时迁移进度监控</li><li>任务保存与编辑</li></ul><h2 id="todo"><a href="#todo" aria-hidden="true" class="header-anchor">#</a> Todo</h2><p>这是Migration 第一个版本。后续根据需求加功能</p><p>1.任务运行中停止功能</p><p>2.根据max_allow_packet 自动计算分页最大条数 并给出建议</p><p>3.修复bug</p><h2 id="contributors"><a href="#contributors" aria-hidden="true" class="header-anchor">#</a> Contributors</h2><p>吴頔： LOGO制作
+何志亮： 布局建议</p></div><!----><div class="content page-nav"><p class="inner"><!----><span class="next"><a href="/migration/zh/guide/getting-started.html">
+          开始使用
+        </a> →
+      </span></p></div></div></div></div>
+    <script src="/migration/assets/js/2.7f5a725a.js" defer></script><script src="/migration/assets/js/app.00627eae.js" defer></script>
+  </body>
+</html>

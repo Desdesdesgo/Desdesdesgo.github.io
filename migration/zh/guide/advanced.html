@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Migration | 高级选项</title>
+    <meta name="description" content="Migration 数据迁移工具">
+    
+    
+    <link rel="preload" href="/migration/assets/css/5.styles.665f0b8e.css" as="style"><link rel="preload" href="/migration/assets/js/app.00627eae.js" as="script"><link rel="preload" href="/migration/assets/js/1.9eb05909.js" as="script"><link rel="prefetch" href="/migration/assets/js/0.33f7c87c.js"><link rel="prefetch" href="/migration/assets/js/2.7f5a725a.js"><link rel="prefetch" href="/migration/assets/js/3.18ff4914.js"><link rel="prefetch" href="/migration/assets/js/4.e163da67.js">
+    <link rel="stylesheet" href="/migration/assets/css/5.styles.665f0b8e.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div><a href="/migration/zh/" class="home-link router-link-active"><!----><span class="site-name">
+      Migration
+    </span></a><div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""><!----></div><nav class="nav-links can-hide"><div class="nav-item"><a href="/migration/zh/guide/" class="nav-link router-link-active">指南</a></div><!----></nav></div></header><div class="sidebar-mask"></div><div class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/migration/zh/guide/" class="nav-link router-link-active">指南</a></div><!----></nav><ul class="sidebar-links"><li><div class="sidebar-group first"><p class="sidebar-heading open"><span>指南</span><!----></p><ul class="sidebar-group-items"><li><a href="/migration/zh/guide/" class="sidebar-link">介绍</a></li><li><a href="/migration/zh/guide/getting-started.html" class="sidebar-link">开始使用</a></li><li><a href="/migration/zh/guide/advanced.html" class="active sidebar-link">高级选项</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/migration/zh/guide/advanced.html#流程" class="sidebar-link">流程</a></li><li class="sidebar-sub-header"><a href="/migration/zh/guide/advanced.html#api" class="sidebar-link">api</a></li><li class="sidebar-sub-header"><a href="/migration/zh/guide/advanced.html#场景一" class="sidebar-link">场景一</a></li><li class="sidebar-sub-header"><a href="/migration/zh/guide/advanced.html#场景二" class="sidebar-link">场景二</a></li><li class="sidebar-sub-header"><a href="/migration/zh/guide/advanced.html#测试脚本" class="sidebar-link">测试脚本</a></li></ul></li></ul></div></li></ul></div><div class="page"><div class="content"><h1 id="高级选项"><a href="#高级选项" aria-hidden="true" class="header-anchor">#</a> 高级选项</h1><div class="tip custom-block"><p class="custom-block-title">NOTES</p><p>在参数设置界面勾选 process hook : use javascript injection</p><p>写这里的js脚本同时需要js 语法知识 和java nashorn知识</p></div><h2 id="流程"><a href="#流程" aria-hidden="true" class="header-anchor">#</a> 流程</h2><p><img src="/migration/assets/img/process.ab7dc90a.jpg" alt="流程"><img src="/migration/assets/img/editor.ee1a75e3.jpg" alt="编辑器"></p><h2 id="api"><a href="#api" aria-hidden="true" class="header-anchor">#</a> api</h2><p>在脚本中你可以使用java原生数据类型以及其方法</p><p>还有额外可用的类：</p><ul><li>jdbcUtil</li></ul><pre class="language-java"><code>    <span class="token comment">/**
+    * 精确统计总数（myisam表，或者需要精确统计，使用这个方法）
+    * @param from  &quot;source&quot; 或者 &quot;target&quot;
+    * @param table  表名
+    * @return number
+    */</span>
+jdbcUtil<span class="token punctuation">.</span><span class="token function">getTotal</span><span class="token punctuation">(</span>String from<span class="token punctuation">,</span>String table<span class="token punctuation">)</span>
+</code></pre><pre class="language-java"><code>    <span class="token comment">/**
+    * 粗略统计总数(innodb表如果没有精确需求，建议使用这个方法)
+    * @param from  &quot;source&quot; 或者 &quot;target&quot;
+    * @param table  表名
+    * @return number
+    */</span>
+jdbcUtil<span class="token punctuation">.</span><span class="token function">getTotalRough</span><span class="token punctuation">(</span>String from<span class="token punctuation">,</span>String sourceDatabaseName<span class="token punctuation">,</span>String tableName<span class="token punctuation">)</span>
+</code></pre><pre class="language-java"><code>	<span class="token comment">/**
+	 * 根据 sql 查询转list map
+	 * @param from  &quot;source&quot; 或者 &quot;target&quot;
+	 * @param sql   
+	 * @return List&lt;HashMap&lt;String,Object&gt;
+	 */</span>
+jdbcUtil<span class="token punctuation">.</span><span class="token function">queryBySqlForMap</span><span class="token punctuation">(</span>String from <span class="token punctuation">,</span>String sql<span class="token punctuation">)</span>
+</code></pre><pre class="language-java"><code>    <span class="token comment">/**
+	 * 批量插入
+	 * @param from  &quot;source&quot; 或者 &quot;target&quot;
+     * @param tableName  表名 
+	 * @param List&lt;HashMap&lt;String,Object&gt;&gt;    需要插入的list
+	 * @return  
+	 */</span>
+jdbcUtil<span class="token punctuation">.</span><span class="token function">insertsWithMap</span><span class="token punctuation">(</span>String from<span class="token punctuation">,</span>String tableName<span class="token punctuation">,</span>List<span class="token operator">&lt;</span>HashMap<span class="token generics function"><span class="token punctuation">&lt;</span>String<span class="token punctuation">,</span>Object<span class="token punctuation">&gt;</span></span><span class="token operator">&gt;</span> datas<span class="token punctuation">)</span>
+</code></pre><ul><li>cachedValue</li></ul><pre class="language-java"><code>    <span class="token comment">//提供四个静态变量（也可以使用js 的共享变量来替代）</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> List<span class="token operator">&lt;</span>HashMap<span class="token generics function"><span class="token punctuation">&lt;</span>String<span class="token punctuation">,</span>Object<span class="token punctuation">&gt;</span></span><span class="token operator">&gt;</span> cachedList1<span class="token punctuation">;</span>
+	<span class="token keyword">public</span> <span class="token keyword">static</span> List<span class="token operator">&lt;</span>HashMap<span class="token generics function"><span class="token punctuation">&lt;</span>String<span class="token punctuation">,</span>Object<span class="token punctuation">&gt;</span></span><span class="token operator">&gt;</span> cachedList2<span class="token punctuation">;</span>
+	<span class="token keyword">public</span> <span class="token keyword">static</span> HashMap<span class="token generics function"><span class="token punctuation">&lt;</span>String<span class="token punctuation">,</span>Object<span class="token punctuation">&gt;</span></span> cachedMap1<span class="token punctuation">;</span>
+	<span class="token keyword">public</span> <span class="token keyword">static</span> HashMap<span class="token generics function"><span class="token punctuation">&lt;</span>String<span class="token punctuation">,</span>Object<span class="token punctuation">&gt;</span></span> cachedMap2<span class="token punctuation">;</span>
+</code></pre><h3 id="使用"><a href="#使用" aria-hidden="true" class="header-anchor">#</a> 使用</h3><pre class="language-js"><code><span class="token comment">//引入 jdbcUtil类</span>
+<span class="token keyword">var</span> jdbcUtil <span class="token operator">=</span> Java<span class="token punctuation">.</span><span class="token function">type</span><span class="token punctuation">(</span><span class="token string">&quot;com.seassoon.synchro.util.JdbcUtil&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">//使用</span>
+<span class="token keyword">var</span> total <span class="token operator">=</span> jdbcUtil<span class="token punctuation">.</span><span class="token function">getTotalRough</span><span class="token punctuation">(</span><span class="token string">&quot;target&quot;</span><span class="token punctuation">,</span><span class="token string">&quot;db_qy_test&quot;</span><span class="token punctuation">,</span><span class="token string">&quot;com_main&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">//引入 cachedValue类</span>
+<span class="token keyword">var</span> cachedValue <span class="token operator">=</span> Java<span class="token punctuation">.</span><span class="token function">type</span><span class="token punctuation">(</span><span class="token string">&quot;com.seassoon.synchro.util.CachedValue&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">//使用</span>
+cachedValue<span class="token punctuation">.</span>cachedList1<span class="token operator">=</span>jdbcUtil<span class="token punctuation">.</span><span class="token function">queryBySqlForMap</span><span class="token punctuation">(</span><span class="token string">&quot;source&quot;</span><span class="token punctuation">,</span><span class="token string">&quot;select * from test1&quot;</span><span class="token punctuation">)</span>
+
+</code></pre><h2 id="场景一"><a href="#场景一" aria-hidden="true" class="header-anchor">#</a> 场景一</h2><h3 id="将字段-money-的内容格式化：-金额：10000-改为-10000-数据类型改为int"><a href="#将字段-money-的内容格式化：-金额：10000-改为-10000-数据类型改为int" aria-hidden="true" class="header-anchor">#</a> 将字段 money 的内容格式化：&quot;金额：10000&quot; 改为 &quot;10000&quot;,数据类型改为int</h3><pre class="language-js"><code><span class="token keyword">function</span> <span class="token function">process</span><span class="token punctuation">(</span>list<span class="token punctuation">)</span><span class="token punctuation">{</span>
+    list<span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span>obj<span class="token punctuation">)</span><span class="token punctuation">{</span>
+        obj<span class="token punctuation">.</span>money <span class="token operator">=</span><span class="token function">Number</span><span class="token punctuation">(</span>obj<span class="token punctuation">.</span>money<span class="token punctuation">.</span><span class="token function">substring</span><span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">)</span> 
+    <span class="token punctuation">}</span><span class="token punctuation">)</span>
+    <span class="token keyword">return</span> list<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre><h2 id="场景二"><a href="#场景二" aria-hidden="true" class="header-anchor">#</a> 场景二</h2><h3 id="映射完成之后填补空缺字段"><a href="#映射完成之后填补空缺字段" aria-hidden="true" class="header-anchor">#</a> 映射完成之后填补空缺字段</h3><pre class="language-js"><code><span class="token comment">//源表数据：</span>
+originList<span class="token operator">=</span><span class="token punctuation">[</span>
+    <span class="token punctuation">{</span>
+        name<span class="token punctuation">:</span><span class="token string">&quot;王小虎&quot;</span><span class="token punctuation">,</span>
+        gender<span class="token punctuation">:</span><span class="token string">&quot;男&quot;</span><span class="token punctuation">,</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+
+<span class="token punctuation">]</span>
+<span class="token comment">//映射完成后：</span>
+list <span class="token operator">=</span> <span class="token punctuation">[</span>
+    <span class="token punctuation">{</span>
+        students_name<span class="token punctuation">:</span><span class="token string">&quot;王小虎&quot;</span><span class="token punctuation">,</span>
+        gender<span class="token punctuation">:</span><span class="token string">&quot;男&quot;</span><span class="token punctuation">,</span>
+        phone<span class="token punctuation">:</span><span class="token string">&quot;&quot;</span><span class="token punctuation">,</span>
+        grade<span class="token punctuation">:</span><span class="token string">&quot;&quot;</span><span class="token punctuation">,</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+
+<span class="token punctuation">]</span>
+</code></pre><p>需要将空缺的字段填上，而相应数据在另一张表中</p><pre class="language-js"><code><span class="token keyword">function</span> <span class="token function">process</span><span class="token punctuation">(</span>list<span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">var</span> jdbcUtil <span class="token operator">=</span> Java<span class="token punctuation">.</span><span class="token function">type</span><span class="token punctuation">(</span><span class="token string">&quot;com.seassoon.synchro.util.JdbcUtil&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">var</span> newList <span class="token operator">=</span> list<span class="token punctuation">.</span><span class="token function">stream</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span>obj<span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">var</span> student_name <span class="token operator">=</span> obj<span class="token punctuation">.</span>student_name<span class="token punctuation">;</span>
+        <span class="token keyword">var</span> result <span class="token operator">=</span> jdbcUtil<span class="token punctuation">.</span><span class="token function">queryBySqlForMap</span><span class="token punctuation">(</span><span class="token string">&quot;source&quot;</span><span class="token punctuation">,</span><span class="token string">&quot;select * from another_table where student_name = '&quot;</span><span class="token operator">+</span>student_name<span class="token operator">+</span><span class="token string">&quot;'&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>result<span class="token punctuation">.</span>length<span class="token operator">&lt;</span><span class="token number">1</span><span class="token punctuation">)</span> <span class="token keyword">return</span> obj<span class="token punctuation">;</span>
+
+        <span class="token keyword">return</span> <span class="token punctuation">{</span>
+            students_name<span class="token punctuation">:</span>obj<span class="token punctuation">.</span>students_name<span class="token punctuation">,</span>
+            gender<span class="token punctuation">:</span>obj<span class="token punctuation">.</span>gender<span class="token punctuation">,</span>
+            phone<span class="token punctuation">:</span>result<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span>phone<span class="token punctuation">,</span>
+            grade<span class="token punctuation">:</span>result<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span>grade<span class="token punctuation">,</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">collect</span><span class="token punctuation">(</span>java<span class="token punctuation">.</span>util<span class="token punctuation">.</span>stream<span class="token punctuation">.</span>Collectors<span class="token punctuation">.</span><span class="token function">toList</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token keyword">return</span> newList<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+</code></pre><p>如果每次循环查询效率过低，则先在preprocess中，将所需数据全部查询出来，存储在map中</p><pre class="language-js"><code><span class="token keyword">function</span> <span class="token function">preprocess</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">var</span> jdbcUtil <span class="token operator">=</span> Java<span class="token punctuation">.</span><span class="token function">type</span><span class="token punctuation">(</span><span class="token string">&quot;com.seassoon.synchro.util.JdbcUtil&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">var</span> cachedValue <span class="token operator">=</span> Java<span class="token punctuation">.</span><span class="token function">type</span><span class="token punctuation">(</span><span class="token string">&quot;com.seassoon.synchro.util.CachedValue&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    cachedValue<span class="token punctuation">.</span>cachedList1 <span class="token operator">=</span> jdbcUtil<span class="token punctuation">.</span><span class="token function">queryBySqlForMap</span><span class="token punctuation">(</span><span class="token string">&quot;source&quot;</span><span class="token punctuation">,</span><span class="token string">&quot;select * from another_table&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">//然后再process函数中通过  cachedValue.cachedList1.stream().filter() 来获取。</span>
+<span class="token punctuation">}</span>
+</code></pre><h2 id="测试脚本"><a href="#测试脚本" aria-hidden="true" class="header-anchor">#</a> 测试脚本</h2><p>点击 test script 按钮可以测试脚本，测试多少条数据由按钮右边input 输入</p><p>测试程序运行到process 函数为止。不会进行目标表的数据插入。</p><div class="tip custom-block"><p class="custom-block-title">TIP</p><p>脚本中可以通过 print() 函数 来打印输出，将会在右边日志窗内看到。</p><p>最终运行完毕后在右边log窗口中看到***after process ，意味着程序顺利执行，如果出现error，意味着脚本有错误。</p></div></div><!----><div class="content page-nav"><p class="inner"><span class="prev">
+        ← <a href="/migration/zh/guide/getting-started.html" class="prev">
+          开始使用
+        </a></span><!----></p></div></div></div></div>
+    <script src="/migration/assets/js/1.9eb05909.js" defer></script><script src="/migration/assets/js/app.00627eae.js" defer></script>
+  </body>
+</html>
